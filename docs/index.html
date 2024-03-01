@@ -115,6 +115,7 @@
                     'type': 'Feature',
                     'properties': {
                         'contributor': data.rows[i].contributor,
+                        'email': data.rows[i].email,
                         'content': data.rows[i].content,
                     },
                     'geometry': {
@@ -138,7 +139,7 @@
                 'source': 'places',
                 'paint': {
                     'circle-radius': 6,
-                    'circle-color': '##3449EB'
+                    'circle-color': '#3449EB'
                 }
             });
         });
