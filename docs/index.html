@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <title>Helpful School Resources</title>
+    <title>Helpful School Resources - Mason Howes Portfolio</title>
+    <link rel="icon" href="../img/m.png">
     <script src="https://unpkg.com/maplibre-gl@3.1.0/dist/maplibre-gl.js"></script>
     <link href="https://unpkg.com/maplibre-gl@3.1.0/dist/maplibre-gl.css" rel="stylesheet" />
     <!-- Styles for the map and popup -->
@@ -11,6 +12,37 @@
         body {
             margin: 0;
             padding: 0;
+        }
+
+        /* Navigation Bar */
+        .topnav {
+            background-color: rgb(5, 56, 133);
+            display: block;
+            align-content: space-around;
+            margin: -10px;
+            height: 60px;
+            border-bottom: 0px solid rgb(255, 213, 205);
+            filter: drop-shadow(0px 0px 4px rgba(1, 1, 33, 0.202));
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50px;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-top: 12px;
+        }
+
+        .hamburgerMenu {
+            font-size: 30px;
+            cursor: pointer;
+            padding-right: -10px;
+            z-index: 6;
         }
 
         #map {
@@ -24,15 +56,18 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 350px;
+            max-width: 350px;
             margin: 10px;
+            margin-top: 60px;
             padding: 10px;
-            background-color: #ffffff;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: #f4f5ff;
             border-radius: 5px;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
             line-height: 1.5;
-            color: #000000;
+            color: rgb(13, 49, 102);
             z-index: 1;
         }
         
@@ -61,39 +96,62 @@
         #submit {
             float: right;
         }
+
+        
     </style>
 </head>
 
 <body>
     <!-- Map container -->
     <div id="map"></div>
-    
+
+    <div class="topnav" id="homePage">
+        <div class="logo">
+            <a class="active" href="https://masonhowes.github.io/Portfolio/index.html">
+                <img src="../img/m.png">
+            </a>
+        </div>
+    </div>
+
     <!-- Information box -->
     <div id="info">
-        <h3>Helpful School Resources Participatory Map</h3>
-        <h4>Mason Howes | University of Washington </h4>
-        <!-- Introduction to the participatory mapping solution -->
-        <p>
-            For a lot of students, the move to Seattle can be very difficult. You are away from home
-            for the first time and in a new, urban environment. Even for those who have been in Seattle
-            for a long time, there are many helpful resources available to those in need. Whether it's
-            something like advising, school supplies, or even good study spots/places to eat, this map
-            has it all! Check out all of the blue dots on the map to see what fellow students have
-            deemed great, helpful resources! If you would like to make your own contribution, click on
-            the map where your resource is located at, and fill in the fields that pop up.
-            <br><br>
-            
-            Special thanks to Bo Zhao for the frameworks of this website. A tutorial on how you can
-            make a similar map can be found at this website:
-            <a href="https://www.github.com/jakobzhao/participatory-mapping" target="_blank">here</a>.
-            <br><i>Zhao, Bo</i>, 2023, "Crafting Your Own Participatory Mapping Project: A Guide", https://doi.org/10.7910/DVN/VSND2H, <i>Harvard Dataverse</i>, V1<br><br>
-            
-            <i>Last update: February 29, 2024</i>
-        </p> 
+        <div class="hamburgerMenu" id="hamburgerMenu">
+            &#9776;
+        </div>
+        <div class="infoContent" id="infoContent">
+            <h3>Helpful School Resources Participatory Map</h3>
+            <h4>Mason Howes | University of Washington </h4>
+            <!-- Introduction to the participatory mapping solution -->
+            <p>
+                For a lot of students, the move to Seattle can be very difficult. You are away from home
+                for the first time and in a new, urban environment. Even for those who have been in Seattle
+                for a long time, there are many helpful resources available to those in need. Whether it's
+                something like advising, school supplies, or even good study spots/places to eat, this map
+                has it all! Check out all of the blue dots on the map to see what fellow students have
+                deemed great, helpful resources! If you would like to make your own contribution, click on
+                the map where your resource is located at, and fill in the fields that pop up.
+                <br><br>
+                
+                Special thanks to Bo Zhao for assistance with creating this project.<br>
+                <br><i>Zhao, Bo</i>, 2023, "Crafting Your Own Participatory Mapping Project: A Guide", https://doi.org/10.7910/DVN/VSND2H, <i>Harvard Dataverse</i>, V1<br><br>
+                
+                <i>Created: February 23rd, 2024</i><br>
+                <i>Last update: July 5th, 2024</i>
+            </p> 
+        </div>
+        
     </div>
     
     <!-- JavaScript code for the interactive map and data submission -->
     <script>
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const dropdownContent = document.getElementById('info');
+        const dropdown = document.getElementById('infoContent');
+
+        hamburgerMenu.addEventListener('click', function() {
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+        });
+
         // Variable to hold the popup instance
         let popup = null;
         
